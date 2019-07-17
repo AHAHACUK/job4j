@@ -3,9 +3,9 @@ package ru.job4j.calculate;
 /**
  * Calculate.
  *
- * @author Petr Arsentev (parsentev@yandex.ru)
- * @version $Id$
- * @since 0.1
+ * @author Shvetsov Ilia
+ * @version 1.0
+ * @since 17.07.2019
  */
 public class Calculate {
     /**
