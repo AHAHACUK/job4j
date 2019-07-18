@@ -20,9 +20,9 @@ public class FindLoopTest {
     public void whenArrayHas10Then3() {
         FindLoop find = new FindLoop();
         int[] input = new int[] {1, 4, 6, 10};
-        int value = 10;
+        int value = 5;
         int result = find.indexOf(input, value);
-        int expect = 3;
+        int expect = -1;
         assertThat(result, is(expect));
     }
 }
