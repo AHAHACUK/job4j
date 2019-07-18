@@ -9,8 +9,8 @@ public class TurnTest {
     @Test
     public void when5elements() {
         Turn turn = new Turn();
-        int[] in = {1,2,3,4,5};
-        int[] expected = {5,4,3,2,1};
+        int[] in = {1, 2, 3, 4, 5};
+        int[] expected = {5, 4, 3, 2, 1};
         int[] out = turn.back(in);
         assertThat(expected, is(expected));
     }
@@ -18,8 +18,8 @@ public class TurnTest {
     @Test
     public void when4elements() {
         Turn turn = new Turn();
-        int[] in = {1,2,3,4};
-        int[] expected = {4,3,2,1};
+        int[] in = {1, 2, 3, 4};
+        int[] expected = {4, 3, 2, 1};
         int[] out = turn.back(in);
         assertThat(expected, is(expected));
     }

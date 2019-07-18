@@ -14,5 +14,5 @@ public class ArrayDuplicateTest {
         String[] out = duplicate.remove(in);
         assertThat(expected, is(out));
     }
-    
+
 }
