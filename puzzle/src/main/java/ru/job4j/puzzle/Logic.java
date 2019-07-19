@@ -79,7 +79,10 @@ public class Logic {
                 if (table[j][i] == 1) {
                     countHorizontal++;
                 }
-                result = (countHorizontal == table.length || countVertical == table.length);
+            }
+            if (countHorizontal == table.length || countVertical == table.length) {
+                result = true;
+                break;
             }
             countVertical = 0;
             countHorizontal = 0;
