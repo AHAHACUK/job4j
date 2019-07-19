@@ -68,6 +68,7 @@ public class Logic {
 
     public boolean isWin() {
         int[][] table = this.convert();
+        boolean result = false;
         int countVertical = 0;
         int countHorizontal = 0;
         for (int i = 0; i < table.length; i++) {
@@ -78,9 +79,12 @@ public class Logic {
                 if (table[j][i] == 1) {
                     countHorizontal++;
                 }
+                result = (countHorizontal == table.length || countVertical == table.length);
             }
+            countVertical = 0;
+            countHorizontal = 0;
         }
-        return (countHorizontal == table.length || countVertical == table.length);
+        return result;
     }
 
     public int[][] convert() {
