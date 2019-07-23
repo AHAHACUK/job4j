@@ -29,6 +29,17 @@ public class PointTest {
     }
 
     @Test
+    public void whenSixAndSixIn3DThenTen() {
+        Point first = new Point(0, 0, 0);
+        Point second = new Point(6, 6, 4);
+        double result = first.distance3d(second);
+        first.info();
+        second.info();
+        System.out.println(String.format("Result is %s", result));
+        assertThat(result, closeTo(9.4, 0.1));
+    }
+
+    @Test
     public void whenCheckItself() {
         Point point = new Point(0, 0);
         double result = point.distance(point);
