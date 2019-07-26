@@ -8,6 +8,8 @@ public class Builder extends Engineer {
         super(name, surname, education, birthday, salary);
     }
 
-    public void work(Plan play) {}
+    public void work(Plan play) {
+
+    }
 
 }
