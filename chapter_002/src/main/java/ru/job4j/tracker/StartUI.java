@@ -119,8 +119,11 @@ public class StartUI {
         String name = this.input.ask("Введите новое название заявки :");
         String desc = this.input.ask("Введите новое описание заявки :");
         Item item = new Item(name, desc, System.currentTimeMillis());
-        this.tracker.replace(id, item);
-        System.out.println("------------ Изменена заявка с getId : " + item.getId() + "-----------");
+        if (this.tracker.replace(id, item)) {
+            System.out.println("------------ Изменена заявка с getId : " + item.getId() + "-----------");
+        } else {
+            System.out.println("------------ Не удалось изменить заявку с getId : " + item.getId() + "-----------");
+        }
     }
 
     /**
@@ -129,8 +132,11 @@ public class StartUI {
     private void deleteItem() {
         System.out.println("------------ Удаление заявки --------------");
         String id = this.input.ask("Введите ID заявки :");
-        this.tracker.delete(id);
-        System.out.println("------------ Удалена заявка с getId : " + id + "-----------");
+        if (this.tracker.delete(id)) {
+            System.out.println("------------ Удалена заявка с getId : " + id + "-----------");
+        } else {
+            System.out.println("------------ Ну удалось удалить заявку с getId : " + id + "-----------");
+        }
     }
 
     /**
@@ -140,10 +146,14 @@ public class StartUI {
         System.out.println("------------ Поиск заявки по ID --------------");
         String id = this.input.ask("Введите ID заявки :");
         Item item = this.tracker.findById(id);
-        System.out.println("Имя заявки : " + item.getName());
-        System.out.println("Описание заявки : " + item.getDecs());
-        System.out.println("Дата создания : " + df.format(new Date(item.getTime())));
-        System.out.println("------------ Получена информация о заявке с getId : " + item.getId() + "-----------");
+        if (item != null) {
+            System.out.println("Имя заявки : " + item.getName());
+            System.out.println("Описание заявки : " + item.getDecs());
+            System.out.println("Дата создания : " + df.format(new Date(item.getTime())));
+            System.out.println("------------ Получена информация о заявке с getId : " + item.getId() + "-----------");
+        } else {
+            System.out.println("------------ Не удалось найти заявку с getId : " + item.getId() + "-----------");
+        }
     }
 
     /**
@@ -153,11 +163,15 @@ public class StartUI {
         System.out.println("------------ Поиск заявки по имени --------------");
         String name = this.input.ask("Введите имя заявок :");
         Item[] items = this.tracker.findByName(name);
-        for (Item item : items) {
-            System.out.println("Имя заявки : " + item.getName());
-            System.out.println("Описание заявки : " + item.getDecs());
-            System.out.println("Дата создания : " + df.format(new Date(item.getTime())));
-            System.out.println("------------ Получена информация о заявке с getId : " + item.getId() + "-----------");
+        if (items.length > 0) {
+            for (Item item : items) {
+                System.out.println("Имя заявки : " + item.getName());
+                System.out.println("Описание заявки : " + item.getDecs());
+                System.out.println("Дата создания : " + df.format(new Date(item.getTime())));
+                System.out.println("------------ Получена информация о заявке с getId : " + item.getId() + "-----------");
+            }
+        } else {
+            System.out.println("------------ Не удалось найти заявок с именем : " + name + "-----------");
         }
     }
 
