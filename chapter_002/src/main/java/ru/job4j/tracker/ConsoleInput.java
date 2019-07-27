@@ -10,4 +10,21 @@ public class ConsoleInput implements Input {
         System.out.println(question);
         return scanner.nextLine();
     }
+
+    @Override
+    public int ask(String question, int[] range){
+        int value = Integer.valueOf(this.ask(question));
+        boolean isExist = false;
+        for (int v : range) {
+            if (v == value) {
+                isExist = true;
+                break;
+            }
+        }
+        if (isExist) {
+            return value;
+        } else {
+            throw new MenuOutException("Выход за границы меню.");
+        }
+    }
 }

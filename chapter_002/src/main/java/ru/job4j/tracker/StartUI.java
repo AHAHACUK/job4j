@@ -2,7 +2,9 @@ package ru.job4j.tracker;
 
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 /**
  * @version $Id$
@@ -38,9 +40,13 @@ public class StartUI {
     public void init() {
         MenuTracker menu = new MenuTracker(this.input, this.tracker, this);
         menu.fillActions();
+        int[] range = new int[menu.getActionsLentgh()];
+        for (int i = 0; i < menu.getActionsLentgh(); i++) {
+            range[i] = i;
+        }
         do {
             menu.show();
-            menu.select(Integer.valueOf(input.ask("Выберите: ")));
+            menu.select(input.ask("Выберите: ", range));
         } while (!exit);
     }
 
@@ -53,6 +59,6 @@ public class StartUI {
      * @param args
      */
     public static void main(String[] args) {
-        new StartUI(new ConsoleInput(), new Tracker()).init();
+        new StartUI(new ValidateInput(), new Tracker()).init();
     }
 }
