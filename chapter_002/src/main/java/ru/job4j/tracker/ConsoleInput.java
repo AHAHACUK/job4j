@@ -21,10 +21,9 @@ public class ConsoleInput implements Input {
                 break;
             }
         }
-        if (isExist) {
-            return value;
-        } else {
+        if (!isExist) {
             throw new MenuOutException("Выход за границы меню.");
         }
+        return value;
     }
 }
