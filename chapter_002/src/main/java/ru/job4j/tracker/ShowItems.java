@@ -1,6 +1,10 @@
 package ru.job4j.tracker;
 
-public class ShowItems implements UserAction {
+public class ShowItems extends BaseAction {
+
+    protected ShowItems(int key, String name) {
+        super(key, name);
+    }
 
     @Override
     public void execute(Input input, Tracker tracker, StartUI ui) {
@@ -9,10 +13,5 @@ public class ShowItems implements UserAction {
             System.out.println("[" + i.getId() + "] " + i.getName());
         }
         System.out.println("-----------------------");
-    }
-
-    @Override
-    public String info() {
-        return "Показать все заяки.";
     }
 }

@@ -1,6 +1,10 @@
 package ru.job4j.tracker;
 
-public class UpdateItem implements UserAction {
+public class UpdateItem extends BaseAction {
+
+    protected UpdateItem(int key, String name) {
+        super(key, name);
+    }
 
     @Override
     public void execute(Input input, Tracker tracker, StartUI ui) {
@@ -14,10 +18,5 @@ public class UpdateItem implements UserAction {
         } else {
             System.out.println("------------ Не удалось изменить заявку с getId : " + item.getId() + "-----------");
         }
-    }
-
-    @Override
-    public String info() {
-        return "Редактировать заяку.";
     }
 }

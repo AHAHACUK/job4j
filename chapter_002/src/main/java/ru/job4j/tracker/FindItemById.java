@@ -4,9 +4,13 @@ import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
-public class FindItemById implements UserAction {
+public class FindItemById extends BaseAction {
 
     private final DateFormat df = new SimpleDateFormat("dd:MM:yyyy:HH:mm:");
+
+    protected FindItemById(int key, String name) {
+        super(key, name);
+    }
 
     @Override
     public void execute(Input input, Tracker tracker, StartUI ui) {
@@ -21,10 +25,5 @@ public class FindItemById implements UserAction {
         } else {
             System.out.println("------------ Не удалось найти заявку с getId : " + item.getId() + "-----------");
         }
-    }
-
-    @Override
-    public String info() {
-        return "Найти заявку по ID.";
     }
 }

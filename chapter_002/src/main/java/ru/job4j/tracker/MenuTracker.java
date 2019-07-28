@@ -46,13 +46,13 @@ public class MenuTracker {
      * Метод заполняет массив.
      */
     public void fillActions() {
-        this.actions.add(new AddItem());
-        this.actions.add(new ShowItems());
-        this.actions.add(new UpdateItem());
-        this.actions.add(new DeleteItem());
-        this.actions.add(new FindItemById());
-        this.actions.add(new FindItemsByName());
-        this.actions.add(new ExitProgram());
+        this.actions.add(new AddItem(0, "Добавить заявку."));
+        this.actions.add(new ShowItems(1, "Показать все заявки."));
+        this.actions.add(new UpdateItem(2, "Редактировать заявку."));
+        this.actions.add(new DeleteItem(3, "Удалить заявку."));
+        this.actions.add(new FindItemById(4, "Найти заявку по ID"));
+        this.actions.add(new FindItemsByName(5, "Найти заявки по имени."));
+        this.actions.add(new ExitProgram(6, "Выход."));
     }
 
     /**
@@ -68,9 +68,9 @@ public class MenuTracker {
      * Метод выводит на экран меню.
      */
     public void show() {
-        for (int i = 0; i < getActionsLentgh(); i++) {
-            if (actions.get(i) != null) {
-                System.out.println(i + ". " + actions.get(i).info());
+        for (UserAction action : actions) {
+            if (action != null) {
+                System.out.println(action.info());
             }
         }
     }

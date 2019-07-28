@@ -4,12 +4,13 @@ import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
-public class FindItemsByName implements UserAction {
+public class FindItemsByName extends BaseAction {
 
-    /**
-     * Формат даты создания заявки.
-     */
     private final DateFormat df = new SimpleDateFormat("dd:MM:yyyy:HH:mm:");
+
+    protected FindItemsByName(int key, String name) {
+        super(key, name);
+    }
 
     @Override
     public void execute(Input input, Tracker tracker, StartUI ui) {
@@ -26,10 +27,5 @@ public class FindItemsByName implements UserAction {
         } else {
             System.out.println("------------ Не удалось найти заявок с именем : " + name + "-----------");
         }
-    }
-
-    @Override
-    public String info() {
-        return "Найти заявки по имени.";
     }
 }
