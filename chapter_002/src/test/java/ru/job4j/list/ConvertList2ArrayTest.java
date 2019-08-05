@@ -2,7 +2,9 @@ package ru.job4j.list;
 
 import org.junit.Test;
 
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 
 import static org.hamcrest.core.Is.is;
 import static org.junit.Assert.assertThat;
@@ -34,6 +36,17 @@ public class ConvertList2ArrayTest {
                 {1, 2},
                 {3, 4}
         };
+        assertThat(result, is(expect));
+    }
+
+    @Test
+    public void whenConvert2And4Then6() {
+        ConvertList2Array list = new ConvertList2Array();
+        List<int[]> input = new ArrayList<>();
+        input.add(new int[]{1, 2});
+        input.add(new int[]{3, 4, 5, 6});
+        List result = list.convert(input);
+        List expect = Arrays.asList(1, 2, 3, 4, 5, 6);
         assertThat(result, is(expect));
     }
 }
