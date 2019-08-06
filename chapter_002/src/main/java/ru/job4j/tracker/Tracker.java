@@ -1,7 +1,9 @@
 package ru.job4j.tracker;
 
 import java.lang.reflect.Array;
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 
 /**
  * @version $Id$
@@ -11,7 +13,7 @@ public class Tracker {
     /**
      * Массив для хранение заявок.
      */
-    private final Item[] items = new Item[100];
+    private List<Item> items = new ArrayList<>();
 
     /**
      * Указатель ячейки для новой заявки.
@@ -24,7 +26,7 @@ public class Tracker {
      */
     public Item add(Item item) {
         item.setId(this.generateId());
-        this.items[this.position++] = item;
+        this.items.add(item);
         return item;
     }
 
@@ -34,7 +36,7 @@ public class Tracker {
             return false;
         }
         item.setId(id);
-        items[index] = item;
+        items.set(index, item);
         return true;
     }
 
@@ -43,32 +45,29 @@ public class Tracker {
         if (index == -1) {
             return false;
         }
-        System.arraycopy(items, index + 1, items, index, 99 - index);
-        position--;
-        items[99] = null;
+        items.remove(index);
         return true;
     }
 
-    public Item[] findAll() {
-        return Arrays.copyOf(items, position);
+    public List<Item> findAll() {
+        return items;
     }
 
-    public Item[] findByName(String key) {
-        Item[] result = new Item[100];
-        int count = 0;
-        for (int i = 0; i < position; i++) {
-            if (items[i] != null && items[i].getName().equals(key)) {
-                result[count++] = items[i];
+    public List<Item> findByName(String key) {
+        List<Item> result = new ArrayList<>();
+        for (Item item : items) {
+            if (item.getName().equals(key)) {
+                result.add(item);
             }
         }
-        return Arrays.copyOf(result, count);
+        return result;
     }
 
     public Item findById(String id) {
         Item result = null;
-        for (int i = 0; i < position; i++) {
-            if (items[i] != null && items[i].getId().equals(id)) {
-                result = items[i];
+        for (Item item : items) {
+            if (item.getId().equals(id)) {
+                result = item;
                 break;
             }
         }
@@ -78,7 +77,7 @@ public class Tracker {
     private int getIndex(Item item) {
         int result = -1;
         for (int i = 0; i < position; i++) {
-            if (items[i] != null && item.equals(items[i])) {
+            if (items.get(i) != null && item.equals((items.get(i)))) {
                 result = i;
                 break;
             }
@@ -89,7 +88,7 @@ public class Tracker {
     private int getIndex(String id) {
         int result = -1;
         for (int i = 0; i < position; i++) {
-            if (items[i] != null && id.equals(items[i].getId())) {
+            if (items.get(i) != null && id.equals(items.get(i).getId())) {
                 result = i;
                 break;
             }
