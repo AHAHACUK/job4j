@@ -12,7 +12,7 @@ public class ConsoleInput implements Input {
     }
 
     @Override
-    public int ask(String question, int[] range){
+    public int ask(String question, int[] range) {
         int value = Integer.valueOf(this.ask(question));
         boolean isExist = false;
         for (int v : range) {

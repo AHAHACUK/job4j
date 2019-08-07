@@ -7,7 +7,7 @@ public class ListCompare implements Comparator<String> {
     public int compare(String left, String right) {
         int result = 0;
         int shorter = left.length() < right.length() ? left.length() : right.length();
-        for(int i = 0; i < shorter; i++) {
+        for (int i = 0; i < shorter; i++) {
             result = Character.compare(left.charAt(i), right.charAt(i));
             if (result != 0) {
                 break;
