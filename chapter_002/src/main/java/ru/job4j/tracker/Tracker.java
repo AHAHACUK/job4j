@@ -87,8 +87,8 @@ public class Tracker {
 
     private int getIndex(String id) {
         int result = -1;
-        for (int i = 0; i < position; i++) {
-            if (items.get(i) != null && id.equals(items.get(i).getId())) {
+        for (int i = 0; i < items.size(); i++) {
+            if (id.equals(items.get(i).getId())) {
                 result = i;
                 break;
             }

@@ -32,13 +32,13 @@ public class StartUITest {
 
     private String menu() {
         return new StringBuilder()
-                .append("0. Добавить новую заявку." + nl)
-                .append("1. Показать все заяки." + nl)
-                .append("2. Редактировать заяку." + nl)
-                .append("3. Удалить заявку." + nl)
-                .append("4. Найти заявку по ID." + nl)
-                .append("5. Найти заявки по имени." + nl)
-                .append("6. Выйти." + nl)
+                .append("0 : Добавить заявку." + nl)
+                .append("1 : Показать все заявки." + nl)
+                .append("2 : Редактировать заявку." + nl)
+                .append("3 : Удалить заявку." + nl)
+                .append("4 : Найти заявку по ID" + nl)
+                .append("5 : Найти заявки по имени." + nl)
+                .append("6 : Выход." + nl)
                 .toString();
     }
 
