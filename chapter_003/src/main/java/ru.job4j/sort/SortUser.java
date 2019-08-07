@@ -2,7 +2,7 @@ package ru.job4j.sort;
 
 import java.util.*;
 
-public class SortUser{
+public class SortUser {
     public Set<User> sort(List<User> list) {
         Set<User> users = new TreeSet<User>();
         users.addAll(list);

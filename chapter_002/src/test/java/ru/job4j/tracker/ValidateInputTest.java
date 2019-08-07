@@ -33,7 +33,7 @@ public class ValidateInputTest {
         assertThat(
                 this.mem.toString(),
                 is(
-                        String.format("Введите корректное число.\r\n")
+                        String.format("Введите корректное число.\n")
                 )
         );
     }
@@ -47,7 +47,7 @@ public class ValidateInputTest {
         assertThat(
                 this.mem.toString(),
                 is(
-                        String.format("Выберите пункт из меню.\r\n")
+                        String.format("Выберите пункт из меню.\n")
                 )
         );
     }
