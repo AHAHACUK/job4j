@@ -5,6 +5,7 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.function.Consumer;
 
 /**
  * @version $Id$
@@ -24,21 +25,24 @@ public class StartUI {
      */
     private final Tracker tracker;
 
+    private final Consumer<String> output;
+
     /**
      * Конструтор инициализирующий поля.
      * @param input ввод данных.
      * @param tracker хранилище заявок.
      */
-    public StartUI(Input input, Tracker tracker) {
+    public StartUI(Input input, Tracker tracker, Consumer<String> output) {
         this.input = input;
         this.tracker = tracker;
+        this.output = output;
     }
 
     /**
      * Основой цикл программы.
      */
     public void init() {
-        MenuTracker menu = new MenuTracker(this.input, this.tracker, this);
+        MenuTracker menu = new MenuTracker(this.input, this.tracker, this, this.output);
         menu.fillActions();
         int[] range = new int[menu.getActionsLentgh()];
         for (int i = 0; i < menu.getActionsLentgh(); i++) {
@@ -58,12 +62,4 @@ public class StartUI {
      * Запускт программы.
      * @param args
      */
-    public static void main(String[] args) {
-        new StartUI(
-                new ValidateInput(
-                        new ConsoleInput()
-                ),
-                new Tracker()
-        ).init();
-    }
 }
