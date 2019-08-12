@@ -2,6 +2,7 @@ package ru.job4j.tracker;
 
 
 import java.util.ArrayList;
+import java.util.function.Consumer;
 
 public class MenuTracker {
     /**
@@ -19,7 +20,9 @@ public class MenuTracker {
     /**
      * @param хранит ссылку на массив типа UserAction.
      */
-    private ArrayList<UserAction> actions = new ArrayList<UserAction>();
+    private ArrayList<UserAction> actions = new ArrayList<>();
+
+    private final Consumer<String> output;
 
     /**
      * Конструктор.
@@ -27,10 +30,11 @@ public class MenuTracker {
      * @param input   объект типа Input
      * @param tracker объект типа Tracker
      */
-    public MenuTracker(Input input, Tracker tracker, StartUI ui) {
+    public MenuTracker(Input input, Tracker tracker, StartUI ui, Consumer<String> output) {
         this.input = input;
         this.tracker = tracker;
         this.ui = ui;
+        this.output = output;
     }
 
     /**
@@ -46,13 +50,13 @@ public class MenuTracker {
      * Метод заполняет массив.
      */
     public void fillActions() {
-        this.actions.add(new AddItem(0, "Добавить заявку."));
-        this.actions.add(new ShowItems(1, "Показать все заявки."));
-        this.actions.add(new UpdateItem(2, "Редактировать заявку."));
-        this.actions.add(new DeleteItem(3, "Удалить заявку."));
-        this.actions.add(new FindItemById(4, "Найти заявку по ID"));
-        this.actions.add(new FindItemsByName(5, "Найти заявки по имени."));
-        this.actions.add(new ExitProgram(6, "Выход."));
+        this.actions.add(new AddItem(0, "Добавить заявку.", this.output));
+        this.actions.add(new ShowItems(1, "Показать все заявки.", this.output));
+        this.actions.add(new UpdateItem(2, "Редактировать заявку.", this.output));
+        this.actions.add(new DeleteItem(3, "Удалить заявку.", this.output));
+        this.actions.add(new FindItemById(4, "Найти заявку по ID", this.output));
+        this.actions.add(new FindItemsByName(5, "Найти заявки по имени.", this.output));
+        this.actions.add(new ExitProgram(6, "Выход.", this.output));
     }
 
     /**
@@ -70,7 +74,7 @@ public class MenuTracker {
     public void show() {
         for (UserAction action : actions) {
             if (action != null) {
-                System.out.println(action.info());
+                output.accept(action.info());
             }
         }
     }

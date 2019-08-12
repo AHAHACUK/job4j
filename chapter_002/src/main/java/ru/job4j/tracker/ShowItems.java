@@ -1,17 +1,19 @@
 package ru.job4j.tracker;
 
+import java.util.function.Consumer;
+
 public class ShowItems extends BaseAction {
 
-    protected ShowItems(int key, String name) {
-        super(key, name);
+    protected ShowItems(int key, String name, Consumer<String> output) {
+        super(key, name, output);
     }
 
     @Override
     public void execute(Input input, Tracker tracker, StartUI ui) {
-        System.out.println("------------ Список заявок --------------");
+        output().accept("------------ Список заявок --------------");
         for (Item i : tracker.findAll()) {
-            System.out.println("[" + i.getId() + "] " + i.getName());
+            output().accept("[" + i.getId() + "] " + i.getName());
         }
-        System.out.println("-----------------------");
+        output().accept("-----------------------");
     }
 }
