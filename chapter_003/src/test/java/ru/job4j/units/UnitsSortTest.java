@@ -32,4 +32,81 @@ public class UnitsSortTest {
         String[] out = sorter.sort(in);
         assertThat(out, is(expected));
     }
+
+    @Test
+    public void whenAscendingOrder2() {
+        UnitsSort sorter = new UnitsSort();
+        String[] in = new String[] {
+                "K1\\SK2",
+                "K1\\SK1\\SSK1",
+                "K1\\SK1\\SSK2",
+                "K2\\SK1\\SSK1",
+                "K2\\SK1\\SSK2"
+        };
+        String[] expected = new String[] {
+                "K1",
+                "K1\\SK1",
+                "K1\\SK1\\SSK1",
+                "K1\\SK1\\SSK2",
+                "K1\\SK2",
+                "K2",
+                "K2\\SK1",
+                "K2\\SK1\\SSK1",
+                "K2\\SK1\\SSK2"
+        };
+        String[] out = sorter.sort(in);
+        assertThat(out, is(expected));
+    }
+
+    @Test
+    public void whenDescendingOrder() {
+        UnitsSort sorter = new UnitsSort();
+        String[] in = new String[] {
+                "K1\\SK1",
+                "K1\\SK2",
+                "K1\\SK1\\SSK1",
+                "K1\\SK1\\SSK2",
+                "K2",
+                "K2\\SK1\\SSK1",
+                "K2\\SK1\\SSK2"
+        };
+        String[] expected = new String[] {
+                "K2",
+                "K2\\SK1",
+                "K2\\SK1\\SSK2",
+                "K2\\SK1\\SSK1",
+                "K1",
+                "K1\\SK2",
+                "K1\\SK1",
+                "K1\\SK1\\SSK2",
+                "K1\\SK1\\SSK1"
+        };
+        String[] out = sorter.sortDescending(in);
+        assertThat(out, is(expected));
+    }
+
+    @Test
+    public void whenDescendingOrder2() {
+        UnitsSort sorter = new UnitsSort();
+        String[] in = new String[] {
+                "K1\\SK2",
+                "K1\\SK1\\SSK1",
+                "K1\\SK1\\SSK2",
+                "K2\\SK1\\SSK1",
+                "K2\\SK1\\SSK2"
+        };
+        String[] expected = new String[] {
+                "K2",
+                "K2\\SK1",
+                "K2\\SK1\\SSK2",
+                "K2\\SK1\\SSK1",
+                "K1",
+                "K1\\SK2",
+                "K1\\SK1",
+                "K1\\SK1\\SSK2",
+                "K1\\SK1\\SSK1"
+        };
+        String[] out = sorter.sortDescending(in);
+        assertThat(out, is(expected));
+    }
 }
