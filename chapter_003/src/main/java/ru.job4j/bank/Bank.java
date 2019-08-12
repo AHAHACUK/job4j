@@ -1,8 +1,10 @@
 package ru.job4j.bank;
 
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
 import java.util.Map;
+import java.util.stream.Collectors;
 
 public class Bank {
     private Map<User, List<Account>> accounts;
@@ -28,22 +30,15 @@ public class Bank {
     }
 
     public List<Account> getUserAccounts (String passport) {
-        List<Account> list = new ArrayList<>();
-        for (User user : accounts.keySet()) {
-            if (user.getPassport().equals(passport)) {
-                list = accounts.get(user);
-                break;
-            }
-        }
-        return list;
+        return accounts.values().stream().flatMap(Collection::stream)
+                .filter(e -> e.getOwner().getPassport().equals(passport)).collect(Collectors.toList());
     }
 
     public Account getUserAccount (String passport, String requisites) {
         Account result = null;
-        for (Account acc : getUserAccounts(passport)) {
-            if (acc.getRequisites().equals(requisites)) {
-                result = acc;
-            }
+        List<Account> list = getUserAccounts(passport).stream().filter(e -> e.getRequisites().equals(requisites)).collect(Collectors.toList());
+        if (list.size() > 0) {
+            result = list.get(0);
         }
         return result;
     }
