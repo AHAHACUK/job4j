@@ -16,4 +16,8 @@ public class School {
                 )
         );
     }
+
+    List<Student> collectToList(List<Student> students, Predicate<Student> predict) {
+        return students.stream().filter(predict).collect(Collectors.toList());
+    }
 }

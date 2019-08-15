@@ -15,9 +15,9 @@ public class SchoolTest {
     public void whenAClass() {
         School school = new School();
         List<Student> students = new ArrayList<>(
-                Arrays.asList(new Student(20), new Student(60), new Student(90))
+                Arrays.asList(new Student("Petya", 20), new Student("Petya",60), new Student("Petya",90))
         );
-        List<Student> out = school.collect(students, student -> student.getScore() >= 70);
+        List<Student> out = school.collectToList(students, student -> student.getScore() >= 70);
         assertThat(out.get(0).getScore(), is(90));
     }
 
@@ -25,9 +25,9 @@ public class SchoolTest {
     public void whenBClass() {
         School school = new School();
         List<Student> students = new ArrayList<>(
-                Arrays.asList(new Student(20), new Student(60), new Student(90))
+                Arrays.asList(new Student("Petya",20), new Student("Petya",60), new Student("Petya",90))
         );
-        List<Student> out = school.collect(students, student -> student.getScore() >= 50 && student.getScore() < 70);
+        List<Student> out = school.collectToList(students, student -> student.getScore() >= 50 && student.getScore() < 70);
         assertThat(out.get(0).getScore(), is(60));
     }
 
@@ -35,9 +35,9 @@ public class SchoolTest {
     public void whenCClass() {
         School school = new School();
         List<Student> students = new ArrayList<>(
-                Arrays.asList(new Student(20), new Student(60), new Student(90))
+                Arrays.asList(new Student("Petya",20), new Student("Petya",60), new Student("Petya",90))
         );
-        List<Student> out = school.collect(students, student -> student.getScore() < 50);
+        List<Student> out = school.collectToList(students, student -> student.getScore() < 50);
         assertThat(out.get(0).getScore(), is(20));
     }
 }
